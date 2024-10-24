@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: root
+    password: 12345678
+    url: jdbc:mysql://localhost:3306/search_engine?useSSL=false&requireSSL=false&allowPublicKeyRetrieval=true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+
+indexing-settings:
+  parallelism: 4
+  secondsUpdateStatistics: 60
+  snippetDepth: 4
+  sites:
+    - url: https://dombulgakova.ru/
+      name: Дом Булгакова
+      msTimeout: 250
+      maxDepth: 16
+    - url: https://dimonvideo.ru/
+      name: DimonVideo
+      msTimeout: 250
+      maxDepth: 16
+    - url: https://www.svetlovka.ru/
+      name: Светловка
+      msTimeout: 250
+      maxDepth: 16
+    - url: https://skillbox.ru
+      name: Skillbox
+      msTimeout: 250
+      maxDepth: 4
+    - url: https://www.playback.ru
+      name: PlayBack.Ru
+      msTimeout: 250
+      maxDepth: 16
