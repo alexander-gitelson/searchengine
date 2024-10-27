@@ -1,4 +1,4 @@
-package searchengine;
+package searchengine.md5;
 
 import lombok.SneakyThrows;
 
