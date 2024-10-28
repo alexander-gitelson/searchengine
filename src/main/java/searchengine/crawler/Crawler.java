@@ -3,6 +3,7 @@ package searchengine.crawler;
 import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
+import org.jsoup.UnsupportedMimeTypeException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -69,7 +70,11 @@ public class Crawler extends RecursiveAction {
             document = connection.get();
         } catch (HttpStatusException e) {
             logger.warn(e.getMessage());
-            root.service.UpdatePageInDatabase(root.siteId, pageId, e.getStatusCode(), "Error",
+            root.service.UpdatePageInDatabase(root.siteId, pageId, e.getStatusCode(), "HttpStatus Error",
+                    e.getMessage() + " " + pageId + " " + urlToParse);
+            return;
+        } catch( UnsupportedMimeTypeException e) {
+            root.service.UpdatePageInDatabase(root.siteId, pageId, 415, "MimeType Error",
                     e.getMessage() + " " + pageId + " " + urlToParse);
             return;
         }
@@ -94,7 +99,8 @@ public class Crawler extends RecursiveAction {
     }
 
     private void ProcessReference(String href) {
-        if (href.startsWith(root.baseURL) && href.endsWith("/") ) {
+
+        if ( href.startsWith(root.baseURL) ) {
             long hrefPageId;
             synchronized (root.lock) {
                 if (root.service.isPageNotParsedAlready(root.siteId, href)) {
