@@ -24,7 +24,6 @@ import java.util.List;
 public class IndexParserService {
 
     private final static Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-//    public final long secondsUpdateStatistics = 10L;
     private final SitesList config;
     private final LemmaRepository lemmaRepository;
     private final IndexRepository indexRepository;

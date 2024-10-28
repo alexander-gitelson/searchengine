@@ -42,4 +42,10 @@ public class SiteEntity {
     @JoinColumn(name = "site_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<PageEntity> pages;
+
+    @OneToMany(fetch = FetchType.LAZY )
+    @JoinColumn(name = "site_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<LemmaEntity> lemmas;
+
 }

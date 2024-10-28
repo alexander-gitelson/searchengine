@@ -28,8 +28,6 @@ public class SearchService {
 
     private final static Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private final SitesList config;
-//    public final long secondsUpdateStatistics = 10L;
-//    private final int snippetDepth = 8;
     private final String itemDelimiter = ". . . ";
     private final LemmaRepository lemmaRepository;
     private final SiteRepository siteRepository;
